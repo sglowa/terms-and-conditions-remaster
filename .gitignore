@@ -1,0 +1,6 @@
+log.md
+node_modules/
+.pnp
+.pnpm
+.env
+.DS_STORE
