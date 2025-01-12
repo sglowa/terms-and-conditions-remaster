@@ -1,12 +1,16 @@
+import {createRequire} from 'module';
 import express from 'express'
-import setRoutes from './setRoutes'
 import dotenv from 'dotenv'
-
 dotenv.config()
+import { createServer } from 'http';
+import setRoutes from './setRoutes'
+import setIo from './socketLogic'
 
 const port = process.env.PORT || 3000;
 const _app = express();
 const app = setRoutes(_app)
-
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+const httpServer = createServer(app)
+const io = setIo(httpServer);
+httpServer.listen(port);
+console.log(`server listening on port ${port}`)
+global.io = io
