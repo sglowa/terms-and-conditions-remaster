@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "render_all_pug_views": "pnpm --recursive run render_pug_views"
   },
   "author": "",
   "license": "ISC",

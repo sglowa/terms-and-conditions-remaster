@@ -1,0 +1,23 @@
+extends popupFrame.pug
+block vars
+	-var height = "auto"
+	-var width = "80%"
+	-var closeContainer='close-container-3'
+	-var id="popup-login"
+block title
+	h1.popup-title.m-0.mt-2 Login
+block content
+	span.popup-text.px-5.mb-2.overflow-auto.flex-grow-1
+		form
+			.form-group.mt-2
+				-var inputData = {label:'E-mail',placeholder:'',type:'email',id:`${id}-email`}
+				include textInput.pug
+			.form-group.mt-2
+				-var inputData = {label:'Password',placeholder:'',type:'password',id:`${id}-password`}
+				include textInput.pug
+	- var btnLeft = "Cancel";
+	- var btnRight = "Okay";
+	- var btnInnerMrgn = "my-0";
+	.px-5.pt-4
+		include twoBtns-aligned.pug
+	.popup-foooter-spacer.pb-4

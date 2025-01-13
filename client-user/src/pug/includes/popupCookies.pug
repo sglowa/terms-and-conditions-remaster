@@ -1,0 +1,17 @@
+extends popupFrame.pug
+block vars
+	-var height = "auto"
+	-var width = "95%"
+	-var closeContainer='close-container-2'
+	-var id="popup-cookies"
+block title
+	h1.popup-title.m-0.mt-2 Cookies
+block content
+	span.popup-text.px-5.mb-2.overflow-auto.flex-grow-1
+		p
+			|We use cookies in order to ensure that you can get the best browsing experience possible on this website. Certain cookies are used to obtain aggregated statistics about website visits to help us constantly improve the site and better serve your needs. Other cookies are used to boost performance and guarantee security of the website. 		
+	- var btnLeft = "I refuse";
+	- var btnRight = "I agree";
+	- var btnInnerMrgn = "my-0";
+	include twoBtns.pug
+	.popup-foooter-spacer.pb-2

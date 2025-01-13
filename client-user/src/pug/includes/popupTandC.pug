@@ -1,0 +1,16 @@
+extends popupFrame.pug
+block vars
+	-var height = "80%"
+	-var width = "80%"
+	-var closeContainer='close-container-3'
+	-var id="popup-tandc"
+block title
+	h1.popup-title.m-0.mt-2 Terms & Conditions
+block content
+	span.popup-text.px-4.mb-4.overflow-auto.h-75.flex-grow-1
+		include termsandconditions.pug
+	- var btnLeft = "I disagree";
+	- var btnRight = "I agree";
+	- var btnInnerMrgn = "my-0";
+	include twoBtns.pug
+	.popup-foooter-spacer.pb-4

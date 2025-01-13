@@ -1,0 +1,59 @@
+extends popupFrame.pug
+block vars
+	-var height = "auto"
+	-var width = "70%"
+	-var closeContainer='close-container-3'
+	-var id="popup-thank-you"
+	-var extraFrameStyle = "max-width:30rem; min-heigth: 90%;"
+	-var shouldReposition = false
+	-var shouldActivate = false
+block title
+	h1.popup-title.m-0.mt-2 Thank you
+block content
+	h2.text-center.migra.pt-3.px-3
+		|Thank you to 
+		b.migra-bold-italics everyone 
+		| involved in the project, especially:
+	h4.thankyou-ppl.text-center.migra.py-3
+		|Filip Bojanić 
+		br 
+		|Urška Breznik 
+		br
+		|Marko Brumen
+		br
+		|Vojo Erjaković
+		br
+		|Snow Yunxue Fu
+		br
+		|Adrian Kolarczyk
+		br
+		|Bogna Konior
+		br
+		|Daniel Koniusz
+		br
+		|Kaja Kraner
+		br
+		|Marko Makuc
+		br
+		|Katra Mitrović
+		br
+		|Taso Pataridze
+		br
+		|Kuba Mati Pies
+		br
+		|Tjaša Pogačar
+		br
+		|Lucija Smodiš
+		br
+		|Maria Stożek
+		br
+		|Tajana Stres
+		br
+		|Vida Vončina
+		br
+		|Anton Žežov
+		br
+		|Simon Žlahtič
+	-var btnContent = "Thank you"
+	include btnYes.pug
+	.py-3

@@ -1,0 +1,24 @@
+extends popupFrame.pug
+block vars
+	-var height = "auto"
+	-var width = "60%"
+	-var closeContainer='close-container-1'
+	-var id="popup-captcha-2"
+block title
+	h1.popup-title.m-0.mt-2 Are you a robot?
+block content
+	span.popup-text.px-4.mb-2.overflow-auto.flex-grow-1
+		h5.mt-2 Prove you're human
+		.captcha-container.w-100
+			img.w-100(id=`${id}-img`)
+		h5.mt-2 Type the text
+		form.mt-0
+			.form-group.mt-0
+				-var inputData = {label:'',placeholder:'',type:'text',id:`${id}-input`}
+				include textInput.pug
+	//- - var btnLeft = "Cancel";
+	//- - var btnRight = "Okay";
+	//- - var btnInnerMrgn = "my-0";
+	//- .px-5.pt-4
+		//- include twoBtns-aligned.pug
+	//- .popup-foooter-spacer.pb-4
