@@ -1,0 +1,15 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets":{
+                    "safari": "6",      // Safari 6 (mobile Safari around iOS 6, released in 2012)
+                    "chrome": "25",     // Chrome 25 (an approximate version from early 2013)
+                    "android": "4.1"
+                }
+            }
+        ]
+    ],
+    "sourceMaps": true
+}
