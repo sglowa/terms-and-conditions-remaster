@@ -3,7 +3,7 @@ block vars
 	-var height = "auto"
 	-var width = "80%"
 	-var closeContainer='close-container-2'
-	-var id="popup-newsletter-3"
+	-var id="popup_newsletter_3"
 block title
 	h1.popup-title.m-0.mt-2 Newsletter
 block content
@@ -12,7 +12,7 @@ block content
 			| Send us your e-mail, we’ll make sure you never miss a thing!
 		form.mt-2
 			.form-group.mt-4
-				-var inputData = {label:'newsletter3',placeholder:'type your E-MAIL address here',type:'email',id:`${id}-email`,label_hidden:'d-none'}
+				-var inputData = {label:'newsletter3',placeholder:'type your E-MAIL address here',type:'email',id:`${id}_email`,label_hidden:'d-none'}
 				include textInput.pug
 	- var btnLeft = "Disagree";
 	- var btnRight = "Agree";

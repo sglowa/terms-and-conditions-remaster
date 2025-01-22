@@ -1,6 +1,10 @@
 block vars
-.bg-layer.position-absolute.w-100.h-100(id=`${id}-bglayer`)
+.bg-layer.position-absolute.w-100.h-100(
+	id=`${id}-bglayer`
+	x-init!=`Alpine.store('${id}-hasBeenResolved', false)`
+	x-show.important!=`!$store['${id}-hasBeenResolved']`)
 .popup-frame.d-flex.flex-column-reverse.position-absolute(
+	x-data="" x-show.important!=`!$store['${id}-hasBeenResolved']`
 	id=`${id}`
 	style=`
 		height:${height};
@@ -8,11 +12,13 @@ block vars
 		${extraFrameStyle ? extraFrameStyle : ''}
 	`
 	should-activate = shouldActivate == undefined ? true : shouldActivate
-	should-reposition = shouldReposition == undefined ? true : shouldReposition
+	should-reposition = shouldReposition == undefined ? true : shouldReposition	
 )
 	.popup-body.d-flex.flex-column.flex-grow-1.bg-secondary.border-primary(style="border:3.5px solid;overflow-y:clip")
-		.close-btn.align-self-end(class=`${closeContainer}`)
-			img.close-img(src="/assets/x.svg" style='height: 1rem;width: 1rem;')
+		.close-btn.align-self-end(
+			class=`${closeContainer}`
+			x-data="" x-on:click!=`$store['${id}-hasBeenResolved']=true`)
+			img.close-img(src=`${assetsPathPrefix}/assets/x.svg` style='height: 1rem;width: 1rem;')
 		block content
 	.popup-title.m-0
 		block title

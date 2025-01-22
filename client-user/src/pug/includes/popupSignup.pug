@@ -3,24 +3,44 @@ block vars
 	-var height = "auto"
 	-var width = "80%"
 	-var closeContainer='close-container-3'
-	-var id="popup-signup"
+	-var id="popup_signup"
 block title
 	h1.popup-title.m-0.mt-2 Sign up
 block content
-	span.popup-text.px-5.mb-2.overflow-auto.flex-grow-1
-		form
-			.form-group.mt-2
-				-var inputData = {label:'User name',placeholder:'',type:'text',id:`${id}-username`}
-				include textInput.pug
-			.form-group.mt-2
-				-var inputData = {label:'E-mail',placeholder:'',type:'email',id:`${id}-email`}
-				include textInput.pug
-			.form-group.mt-2
-				-var inputData = {label:'Password',placeholder:'',type:'password',id:`${id}-password`}
-				include textInput.pug
-	- var btnLeft = "Cancel";
-	- var btnRight = "Okay";
-	- var btnInnerMrgn = "my-0";
-	.px-5.pt-4
-		include twoBtns-aligned.pug
-	.popup-foooter-spacer.pb-4
+	div(x-data=`{
+			${id}_username:{value:'',condition_met:false},
+			${id}_email:{value:'',condition_met:false},
+			${id}_password:{value:'',condition_met:false},
+			_isConditionSatisfied:false,
+			get isConditionSatisfied() {
+				
+				let conditions = [
+                    this.${id}_username.condition_met+0,
+                    this.${id}_email.condition_met+0,
+                    this.${id}_password.condition_met+0
+                ]
+
+				let result =  conditions.length ? conditions.every(val => val === 1) : true;
+				console.log("result: ", result);
+				return result;
+			}
+		}`
+		x-init="$watch('_isConditionSatisfied', (value,oldVal) => console.log(`current: ${value}, old: ${oldVal}`))"
+		style="display: grid")
+		span.popup-text.px-5.mb-2.overflow-auto.flex-grow-1
+			form
+				.form-group.mt-2
+					-var inputData = {label:'User name',placeholder:'',type:'text',id:`${id}_username`}
+					include textInput.pug
+				.form-group.mt-2
+					-var inputData = {label:'E-mail',placeholder:'',type:'email',id:`${id}_email`}
+					include textInput.pug
+				.form-group.mt-2
+					-var inputData = {label:'Password',placeholder:'',type:'password',id:`${id}_password`}
+					include textInput.pug
+		- var btnLeft = "Cancel";
+		- var btnRight = "Okay";
+		- var btnInnerMrgn = "my-0";
+		.px-5.pt-4
+			include twoBtns-aligned.pug
+		.popup-foooter-spacer.pb-4

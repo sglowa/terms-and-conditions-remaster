@@ -1,11 +1,42 @@
-.bg-layer.position-absolute.w-100.h-100(id=`fkrc-checkbox-wrapper-${idNum}-bglayer`)
-.fkrc.fkrc-checkbox-wrapper.position-absolute(id=`fkrc-checkbox-wrapper-${idNum}` should-reposition should-activate)
+- var id = `fkrc-checkbox-${idNum}`
+.bg-layer.position-absolute.w-100.h-100(
+	id=`fkrc-checkbox-wrapper-${idNum}-bglayer`
+	x-init!=`Alpine.store('${id}-hasBeenResolved', false)`
+	x-show.important!=`!$store['${id}-hasBeenResolved']`
+	x-)
+.fkrc.fkrc-checkbox-wrapper.position-absolute(
+	id=`fkrc-checkbox-wrapper-${idNum}`
+	x-data="{hasBeenClicked:false}"
+	x-show.important!=`!$store['${id}-hasBeenResolved']`
+	should-reposition 
+	should-activate)
 	.fkrc-container.fkrc-m-p
 		.fkrc-checkbox-window.fkrc-m-p.fkrc-block
 			.fkrc-checkbox-container.fkrc-m-p
-				button.fkrc-checkbox.fkrc-m-p.fkrc-line-normal(type='button')
+				button.fkrc-checkbox.fkrc-m-p.fkrc-line-normal(
+					type='button'
+					x-data=""
+					x-on:click=`()=>{
+						setTimeout(()=>{
+							$store['${id}-hasBeenResolved'] = true
+						},Math.floor(Math.random()*1000+1000));
+						hasBeenClicked=true
+					}`
+					:disabled="hasBeenClicked"
+					:style=`hasBeenClicked && {
+						width : "4px",
+            			height : "4px",
+            			borderRadius : "50%",
+            			marginLeft : "25px",
+            			marginTop : "33px",
+            			opacity : "0",
+					}`)
 			p.fkrc-im-not-a-robot.fkrc-m-p.fkrc-line-normal I&apos;m not a robot
-			img.fkrc-captcha-logo.fkrc-line-normal(src='/assets/fakerecaptcha/captcha_logo.svg' alt='')
+			img.fkrc-captcha-logo.fkrc-line-normal(src=`${assetsPathPrefix}/assets/fakerecaptcha/captcha_logo.svg` alt='')
 			p.fkrc-checkbox-desc.fkrc-m-p.fkrc-line-normal CAPTCHA
 			p.fkrc-checkbox-desc.fkrc-m-p.fkrc-line-normal Privacy - Terms
-			img.fkrc-spinner.fkrc-m-p.fkrc-line-normal(src='/assets/fakerecaptcha/captcha_spinner.gif' alt='')
+			img.fkrc-spinner.fkrc-m-p.fkrc-line-normal(
+				src=`${assetsPathPrefix}/assets/fakerecaptcha/captcha_spinner.gif`
+				alt=''
+				:style= "hasBeenClicked && {opacity: '1', visibility: 'visible'}"
+			)

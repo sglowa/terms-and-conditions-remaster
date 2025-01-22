@@ -1,3 +1,15 @@
 if inputData.label
 	label(for=`${inputData.id}` class=`${inputData.label_hidden}`)= inputData.label
-input.form-control(type=`${inputData.type}` id=`${inputData.id}` placeholder=`${inputData.placeholder}`)
+input.form-control(
+	type=`${inputData.type}`
+	id=`${inputData.id}`
+	placeholder=`${inputData.placeholder}`	
+	required
+	x-model=`${inputData.id}.value`
+	x-on:input=`
+		${inputData.id}.condition_met = $event.target.checkValidity();
+		console.log(${inputData.id}.condition_met);
+	`
+	)
+//- x-init=` if (typeof ${inputData.id.replace(/[\s-]/g,'_')} == 'undefined') ${inputData.id.replace(/[\s-]/g,'_')} = '' `
+

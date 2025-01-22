@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Terms & Conditions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
+    <link href="../../../../public/styles/main.css" rel="stylesheet"/>
+    <link href="../../../../public/styles/fakerecaptcha.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer="defer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vh-check/dist/vh-check.min.js"></script>
     <script>
@@ -13,24 +17,23 @@
           var test = vhCheck({
           cssVarName: 'vh-offset'
           });
-      }());		
+      }()); 
       
     </script>
   </head>
   <body style="overscroll-behavior:none">
     <div id="root" style="touch-action:none;">
-      <p class="test">hello world!!</p>
-      <video class="bg-blur-video position-absolute w-100 h-100" style="object-fit:fill" src="../assets/vertVid.mp4" muted="muted" autoplay="autoplay" loop="loop" playsinline="playsinline"></video>
+      <video class="bg-blur-video position-absolute w-100 h-100" style="object-fit:fill" src="../../../../public//assets/vertVid.mp4" muted="muted" autoplay="autoplay" loop="loop" playsinline="playsinline"></video>
       <div class="bg-layer position-absolute w-100 h-100" id="video-occluder"></div>
       <div class="ticket vertical position-absolute w-100 h-100"></div>
-      <div class="bg-layer position-absolute w-100 h-100" id="popup-tandc-bglayer"></div>
-      <div class="popup-frame d-flex flex-column-reverse position-absolute" id="popup-tandc" style="
+      <div class="bg-layer position-absolute w-100 h-100" id="popup_tandc-bglayer" x-init="Alpine.store('popup_tandc-hasBeenResolved', false)" x-show.important="!$store['popup_tandc-hasBeenResolved']"></div>
+      <div class="popup-frame d-flex flex-column-reverse position-absolute" x-data="" x-show.important="!$store['popup_tandc-hasBeenResolved']" id="popup_tandc" style="
 		height:80%;
 		width:80%;
 		
 	" should-activate="should-activate" should-reposition="should-reposition">
         <div class="popup-body d-flex flex-column flex-grow-1 bg-secondary border-primary" style="border:3.5px solid;overflow-y:clip">
-          <div class="close-btn align-self-end close-container-3"><img class="close-img" src="/assets/x.svg" style="height: 1rem;width: 1rem;"/></div><span class="popup-text px-4 mb-4 overflow-auto h-75 flex-grow-1">
+          <div class="close-btn align-self-end close-container-3" x-data="" x-on:click="$store['popup_tandc-hasBeenResolved']=true"><img class="close-img" src="../../../../public//assets/x.svg" style="height: 1rem;width: 1rem;"/></div><span class="popup-text px-4 mb-4 overflow-auto h-75 flex-grow-1">
             <h5>Welcome to Terms &amp; Conditions!</h5>
             <p>These terms and conditions outline the rules and regulations for the use of Terms &amp; Conditions&apos;s Website, located at http://www.terms-and-conditions.online/.</p>
             <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Terms &amp; Conditions if you do not agree to take all of the terms and conditions stated on this page.</p>
@@ -127,29 +130,14 @@
           <h1 class="popup-title m-0 mt-2">Terms & Conditions</h1>
         </div>
       </div>
-      <div class="bg-layer position-absolute w-100 h-100" id="fkrc-wrapper-0-bglayer"></div>
-      <div class="fkrc fkrc-verifywin-wrapper position-absolute" id="fkrc-wrapper-0" should-reposition="should-reposition" should-activate="should-activate">
-        <div class="fkrc-container fkrc-m-p">
-          <div class="fkrc-verifywin-window">
-            <div class="fkrc-verifywin-container">
-              <header class="fkrc-verifywin-header"><span class="fkrc-verifywin-header-text-medium fkrc-m-p fkrc-block">Select all squares with</span><span class="fkrc-verifywin-header-text-big fkrc-m-p fkrc-block">something</span><span class="fkrc-verifywin-header-text-medium fkrc-m-p fkrc-block">then, hit verify</span></header>
-              <main class="fkrc-verifywin-main">Your content</main>
-            </div>
-            <footer class="fkrc-verifywin-container fkrc-verifywin-footer">
-              <div class="fkrc-verifywin-footer-left">Press the verify button to proceed.</div>
-              <button class="fkrc-verifywin-verify-button fkrc-block" type="button">Verify</button>
-            </footer>
-          </div>
-        </div>
-      </div>
-      <div class="bg-layer position-absolute w-100 h-100" id="popup-cookies-bglayer"></div>
-      <div class="popup-frame d-flex flex-column-reverse position-absolute" id="popup-cookies" style="
+      <div class="bg-layer position-absolute w-100 h-100" id="popup_cookies-bglayer" x-init="Alpine.store('popup_cookies-hasBeenResolved', false)" x-show.important="!$store['popup_cookies-hasBeenResolved']"></div>
+      <div class="popup-frame d-flex flex-column-reverse position-absolute" x-data="" x-show.important="!$store['popup_cookies-hasBeenResolved']" id="popup_cookies" style="
 		height:auto;
 		width:95%;
 		
 	" should-activate="should-activate" should-reposition="should-reposition">
         <div class="popup-body d-flex flex-column flex-grow-1 bg-secondary border-primary" style="border:3.5px solid;overflow-y:clip">
-          <div class="close-btn align-self-end close-container-2"><img class="close-img" src="/assets/x.svg" style="height: 1rem;width: 1rem;"/></div><span class="popup-text px-5 mb-2 overflow-auto flex-grow-1">
+          <div class="close-btn align-self-end close-container-2" x-data="" x-on:click="$store['popup_cookies-hasBeenResolved']=true"><img class="close-img" src="../../../../public//assets/x.svg" style="height: 1rem;width: 1rem;"/></div><span class="popup-text px-5 mb-2 overflow-auto flex-grow-1">
             <p>We use cookies in order to ensure that you can get the best browsing experience possible on this website. Certain cookies are used to obtain aggregated statistics about website visits to help us constantly improve the site and better serve your needs. Other cookies are used to boost performance and guarantee security of the website. 		</p></span>
           <div class="btnsContainer btn-toolbar justify-content-center">
             <div class="btn-no d-flex w-25" style="max-width:100px">
@@ -170,47 +158,67 @@
           <h1 class="popup-title m-0 mt-2">Cookies</h1>
         </div>
       </div>
-      <div class="bg-layer position-absolute w-100 h-100" id="fkrc-checkbox-wrapper-1-bglayer"></div>
-      <div class="fkrc fkrc-checkbox-wrapper position-absolute" id="fkrc-checkbox-wrapper-1" should-reposition="should-reposition" should-activate="should-activate">
+      <div class="bg-layer position-absolute w-100 h-100" id="fkrc-checkbox-wrapper-1-bglayer" x-init="Alpine.store('fkrc-checkbox-1-hasBeenResolved', false)" x-show.important="!$store['fkrc-checkbox-1-hasBeenResolved']" x-="x-"></div>
+      <div class="fkrc fkrc-checkbox-wrapper position-absolute" id="fkrc-checkbox-wrapper-1" x-data="{hasBeenClicked:false}" x-show.important="!$store['fkrc-checkbox-1-hasBeenResolved']" should-reposition="should-reposition" should-activate="should-activate">
         <div class="fkrc-container fkrc-m-p">
           <div class="fkrc-checkbox-window fkrc-m-p fkrc-block">
             <div class="fkrc-checkbox-container fkrc-m-p">
-              <button class="fkrc-checkbox fkrc-m-p fkrc-line-normal" type="button"></button>
+              <button class="fkrc-checkbox fkrc-m-p fkrc-line-normal" type="button" x-data="" x-on:click="()=&gt;{
+						setTimeout(()=&gt;{
+							$store['fkrc-checkbox-1-hasBeenResolved'] = true
+						},Math.floor(Math.random()*1000+1000));
+						hasBeenClicked=true
+					}" :disabled="hasBeenClicked" :style="hasBeenClicked &amp;&amp; {
+						width : &quot;4px&quot;,
+            			height : &quot;4px&quot;,
+            			borderRadius : &quot;50%&quot;,
+            			marginLeft : &quot;25px&quot;,
+            			marginTop : &quot;33px&quot;,
+            			opacity : &quot;0&quot;,
+					}"></button>
             </div>
-            <p class="fkrc-im-not-a-robot fkrc-m-p fkrc-line-normal">I&apos;m not a robot</p><img class="fkrc-captcha-logo fkrc-line-normal" src="/assets/fakerecaptcha/captcha_logo.svg" alt=""/>
+            <p class="fkrc-im-not-a-robot fkrc-m-p fkrc-line-normal">I&apos;m not a robot</p><img class="fkrc-captcha-logo fkrc-line-normal" src="../../../../public//assets/fakerecaptcha/captcha_logo.svg" alt=""/>
             <p class="fkrc-checkbox-desc fkrc-m-p fkrc-line-normal">CAPTCHA</p>
-            <p class="fkrc-checkbox-desc fkrc-m-p fkrc-line-normal">Privacy - Terms</p><img class="fkrc-spinner fkrc-m-p fkrc-line-normal" src="/assets/fakerecaptcha/captcha_spinner.gif" alt=""/>
+            <p class="fkrc-checkbox-desc fkrc-m-p fkrc-line-normal">Privacy - Terms</p><img class="fkrc-spinner fkrc-m-p fkrc-line-normal" src="../../../../public//assets/fakerecaptcha/captcha_spinner.gif" alt="" :style="hasBeenClicked &amp;&amp; {opacity: '1', visibility: 'visible'}"/>
           </div>
         </div>
       </div>
-      <div class="bg-layer position-absolute w-100 h-100" id="popup-login-bglayer"></div>
-      <div class="popup-frame d-flex flex-column-reverse position-absolute" id="popup-login" style="
+      <div class="bg-layer position-absolute w-100 h-100" id="popup_login-bglayer" x-init="Alpine.store('popup_login-hasBeenResolved', false)" x-show.important="!$store['popup_login-hasBeenResolved']"></div>
+      <div class="popup-frame d-flex flex-column-reverse position-absolute" x-data="" x-show.important="!$store['popup_login-hasBeenResolved']" id="popup_login" style="
 		height:auto;
 		width:80%;
 		
 	" should-activate="should-activate" should-reposition="should-reposition">
         <div class="popup-body d-flex flex-column flex-grow-1 bg-secondary border-primary" style="border:3.5px solid;overflow-y:clip">
-          <div class="close-btn align-self-end close-container-3"><img class="close-img" src="/assets/x.svg" style="height: 1rem;width: 1rem;"/></div><span class="popup-text px-5 mb-2 overflow-auto flex-grow-1">
+          <div class="close-btn align-self-end close-container-3" x-data="" x-on:click="$store['popup_login-hasBeenResolved']=true"><img class="close-img" src="../../../../public//assets/x.svg" style="height: 1rem;width: 1rem;"/></div><span class="popup-text px-5 mb-2 overflow-auto flex-grow-1">
             <form>
               <div class="form-group mt-2">
-                <label class="undefined" for="popup-login-email">E-mail</label>
-                <input class="form-control" type="email" id="popup-login-email" placeholder=""/>
+                <label class="undefined" for="popup_login_email">E-mail</label>
+                <input class="form-control" type="email" id="popup_login_email" placeholder="" required="required" x-model="popup_login_email.value" x-on:input="
+		popup_login_email.condition_met = $event.target.checkValidity();
+		console.log(popup_login_email.condition_met);
+	"/>
               </div>
               <div class="form-group mt-2">
-                <label class="undefined" for="popup-login-password">Password</label>
-                <input class="form-control" type="password" id="popup-login-password" placeholder=""/>
+                <label class="undefined" for="popup_login_password">Password</label>
+                <input class="form-control" type="password" id="popup_login_password" placeholder="" required="required" x-model="popup_login_password.value" x-on:input="
+		popup_login_password.condition_met = $event.target.checkValidity();
+		console.log(popup_login_password.condition_met);
+	"/>
               </div>
             </form></span>
           <div class="px-5 pt-4">
             <div class="btnsContainer btn-toolbar justify-content-between">
               <div class="btn-no d-flex" style="width: 40%; max-width:200px">
-                <button class="btn-secondary flex-grow-1 text-nowrap pb-0 pt-1">
+                <button class="btn-secondary flex-grow-1 text-nowrap pb-0 pt-1" x-on:click="$store['popup_login-hasBeenResolved']=true">
                   <h4 class="btn-text text-center my-0">Cancel</h4>
                 </button>
               </div>
               <div class="gutter flex-shrink-1" style="width:10%;"></div>
               <div class="btn-yes d-flex" style="width: 40%; max-width:200px">
-                <button class="btn-primary flex-grow-1 text-nowrap pb-0 pt-1">
+                <button class="btn-primary flex-grow-1 text-nowrap pb-0 pt-1" disabled="true" x-bind:disabled="typeof isConditionSatisfied !== 'undefined' 
+				? !isConditionSatisfied 
+				: true" x-on:click="$store['popup_login-hasBeenResolved']=true">
                   <h4 class="btn-text text-center my-0">Okay</h4>
                 </button>
               </div>
@@ -222,46 +230,36 @@
           <h1 class="popup-title m-0 mt-2">Login</h1>
         </div>
       </div>
-      <div class="bg-layer position-absolute w-100 h-100" id="fkrc-wrapper-2-bglayer"></div>
-      <div class="fkrc fkrc-verifywin-wrapper position-absolute" id="fkrc-wrapper-2" should-reposition="should-reposition" should-activate="should-activate">
-        <div class="fkrc-container fkrc-m-p">
-          <div class="fkrc-verifywin-window">
-            <div class="fkrc-verifywin-container">
-              <header class="fkrc-verifywin-header"><span class="fkrc-verifywin-header-text-medium fkrc-m-p fkrc-block">Select all squares with</span><span class="fkrc-verifywin-header-text-big fkrc-m-p fkrc-block">something</span><span class="fkrc-verifywin-header-text-medium fkrc-m-p fkrc-block">then, hit verify</span></header>
-              <main class="fkrc-verifywin-main">Your content</main>
-            </div>
-            <footer class="fkrc-verifywin-container fkrc-verifywin-footer">
-              <div class="fkrc-verifywin-footer-left">Press the verify button to proceed.</div>
-              <button class="fkrc-verifywin-verify-button fkrc-block" type="button">Verify</button>
-            </footer>
-          </div>
-        </div>
-      </div>
-      <div class="bg-layer position-absolute w-100 h-100" id="popup-newsletter-3-bglayer"></div>
-      <div class="popup-frame d-flex flex-column-reverse position-absolute" id="popup-newsletter-3" style="
+      <div class="bg-layer position-absolute w-100 h-100" id="popup_newsletter_3-bglayer" x-init="Alpine.store('popup_newsletter_3-hasBeenResolved', false)" x-show.important="!$store['popup_newsletter_3-hasBeenResolved']"></div>
+      <div class="popup-frame d-flex flex-column-reverse position-absolute" x-data="" x-show.important="!$store['popup_newsletter_3-hasBeenResolved']" id="popup_newsletter_3" style="
 		height:auto;
 		width:80%;
 		
 	" should-activate="should-activate" should-reposition="should-reposition">
         <div class="popup-body d-flex flex-column flex-grow-1 bg-secondary border-primary" style="border:3.5px solid;overflow-y:clip">
-          <div class="close-btn align-self-end close-container-2"><img class="close-img" src="/assets/x.svg" style="height: 1rem;width: 1rem;"/></div><span class="popup-text px-4 mb-2 overflow-auto flex-grow-1">
+          <div class="close-btn align-self-end close-container-2" x-data="" x-on:click="$store['popup_newsletter_3-hasBeenResolved']=true"><img class="close-img" src="../../../../public//assets/x.svg" style="height: 1rem;width: 1rem;"/></div><span class="popup-text px-4 mb-2 overflow-auto flex-grow-1">
             <h2 class="form-call2action mt-2">Send us your e-mail, we’ll make sure you never miss a thing!</h2>
             <form class="mt-2">
               <div class="form-group mt-4">
-                <label class="d-none" for="popup-newsletter-3-email">newsletter3</label>
-                <input class="form-control" type="email" id="popup-newsletter-3-email" placeholder="type your E-MAIL address here"/>
+                <label class="d-none" for="popup_newsletter_3_email">newsletter3</label>
+                <input class="form-control" type="email" id="popup_newsletter_3_email" placeholder="type your E-MAIL address here" required="required" x-model="popup_newsletter_3_email.value" x-on:input="
+		popup_newsletter_3_email.condition_met = $event.target.checkValidity();
+		console.log(popup_newsletter_3_email.condition_met);
+	"/>
               </div>
             </form></span>
           <div class="px-5 pt-4">
             <div class="btnsContainer btn-toolbar justify-content-between">
               <div class="btn-no d-flex" style="width: 40%; max-width:200px">
-                <button class="btn-secondary flex-grow-1 text-nowrap pb-0 pt-1">
+                <button class="btn-secondary flex-grow-1 text-nowrap pb-0 pt-1" x-on:click="$store['popup_newsletter_3-hasBeenResolved']=true">
                   <h4 class="btn-text text-center my-0">Disagree</h4>
                 </button>
               </div>
               <div class="gutter flex-shrink-1" style="width:10%;"></div>
               <div class="btn-yes d-flex" style="width: 40%; max-width:200px">
-                <button class="btn-primary flex-grow-1 text-nowrap pb-0 pt-1">
+                <button class="btn-primary flex-grow-1 text-nowrap pb-0 pt-1" disabled="true" x-bind:disabled="typeof isConditionSatisfied !== 'undefined' 
+				? !isConditionSatisfied 
+				: true" x-on:click="$store['popup_newsletter_3-hasBeenResolved']=true">
                   <h4 class="btn-text text-center my-0">Agree</h4>
                 </button>
               </div>
@@ -273,20 +271,23 @@
           <h1 class="popup-title m-0 mt-2">Newsletter</h1>
         </div>
       </div>
-      <div class="bg-layer position-absolute w-100 h-100" id="popup-captcha-1-bglayer"></div>
-      <div class="popup-frame d-flex flex-column-reverse position-absolute" id="popup-captcha-1" style="
+      <div class="bg-layer position-absolute w-100 h-100" id="popup_captcha_1-bglayer" x-init="Alpine.store('popup_captcha_1-hasBeenResolved', false)" x-show.important="!$store['popup_captcha_1-hasBeenResolved']"></div>
+      <div class="popup-frame d-flex flex-column-reverse position-absolute" x-data="" x-show.important="!$store['popup_captcha_1-hasBeenResolved']" id="popup_captcha_1" style="
 		height:auto;
 		width:60%;
 		
 	" should-activate="should-activate" should-reposition="should-reposition">
         <div class="popup-body d-flex flex-column flex-grow-1 bg-secondary border-primary" style="border:3.5px solid;overflow-y:clip">
-          <div class="close-btn align-self-end close-container-1"><img class="close-img" src="/assets/x.svg" style="height: 1rem;width: 1rem;"/></div><span class="popup-text px-4 mb-2 overflow-auto flex-grow-1">
+          <div class="close-btn align-self-end close-container-1" x-data="" x-on:click="$store['popup_captcha_1-hasBeenResolved']=true"><img class="close-img" src="../../../../public//assets/x.svg" style="height: 1rem;width: 1rem;"/></div><span class="popup-text px-4 mb-2 overflow-auto flex-grow-1">
             <h5 class="mt-2">Prove you're not a robot</h5>
-            <div class="captcha-container w-100"><img class="w-100" id="popup-captcha-1-img"/></div>
+            <div class="captcha-container w-100"><img class="w-100" id="popup_captcha_1-img"/></div>
             <h5 class="mt-2">Type the text</h5>
             <form class="mt-0">
               <div class="form-group mt-0">
-                <input class="form-control" type="text" id="popup-captcha-1-input" placeholder=""/>
+                <input class="form-control" type="text" id="popup_captcha_1_input" placeholder="" required="required" x-model="popup_captcha_1_input.value" x-on:input="
+		popup_captcha_1_input.condition_met = $event.target.checkValidity();
+		console.log(popup_captcha_1_input.condition_met);
+	"/>
               </div>
             </form></span>
         </div>
@@ -294,33 +295,48 @@
           <h1 class="popup-title m-0 mt-2">Captcha</h1>
         </div>
       </div>
-      <div class="bg-layer position-absolute w-100 h-100" id="fkrc-checkbox-wrapper-3-bglayer"></div>
-      <div class="fkrc fkrc-checkbox-wrapper position-absolute" id="fkrc-checkbox-wrapper-3" should-reposition="should-reposition" should-activate="should-activate">
+      <div class="bg-layer position-absolute w-100 h-100" id="fkrc-checkbox-wrapper-3-bglayer" x-init="Alpine.store('fkrc-checkbox-3-hasBeenResolved', false)" x-show.important="!$store['fkrc-checkbox-3-hasBeenResolved']" x-="x-"></div>
+      <div class="fkrc fkrc-checkbox-wrapper position-absolute" id="fkrc-checkbox-wrapper-3" x-data="{hasBeenClicked:false}" x-show.important="!$store['fkrc-checkbox-3-hasBeenResolved']" should-reposition="should-reposition" should-activate="should-activate">
         <div class="fkrc-container fkrc-m-p">
           <div class="fkrc-checkbox-window fkrc-m-p fkrc-block">
             <div class="fkrc-checkbox-container fkrc-m-p">
-              <button class="fkrc-checkbox fkrc-m-p fkrc-line-normal" type="button"></button>
+              <button class="fkrc-checkbox fkrc-m-p fkrc-line-normal" type="button" x-data="" x-on:click="()=&gt;{
+						setTimeout(()=&gt;{
+							$store['fkrc-checkbox-3-hasBeenResolved'] = true
+						},Math.floor(Math.random()*1000+1000));
+						hasBeenClicked=true
+					}" :disabled="hasBeenClicked" :style="hasBeenClicked &amp;&amp; {
+						width : &quot;4px&quot;,
+            			height : &quot;4px&quot;,
+            			borderRadius : &quot;50%&quot;,
+            			marginLeft : &quot;25px&quot;,
+            			marginTop : &quot;33px&quot;,
+            			opacity : &quot;0&quot;,
+					}"></button>
             </div>
-            <p class="fkrc-im-not-a-robot fkrc-m-p fkrc-line-normal">I&apos;m not a robot</p><img class="fkrc-captcha-logo fkrc-line-normal" src="/assets/fakerecaptcha/captcha_logo.svg" alt=""/>
+            <p class="fkrc-im-not-a-robot fkrc-m-p fkrc-line-normal">I&apos;m not a robot</p><img class="fkrc-captcha-logo fkrc-line-normal" src="../../../../public//assets/fakerecaptcha/captcha_logo.svg" alt=""/>
             <p class="fkrc-checkbox-desc fkrc-m-p fkrc-line-normal">CAPTCHA</p>
-            <p class="fkrc-checkbox-desc fkrc-m-p fkrc-line-normal">Privacy - Terms</p><img class="fkrc-spinner fkrc-m-p fkrc-line-normal" src="/assets/fakerecaptcha/captcha_spinner.gif" alt=""/>
+            <p class="fkrc-checkbox-desc fkrc-m-p fkrc-line-normal">Privacy - Terms</p><img class="fkrc-spinner fkrc-m-p fkrc-line-normal" src="../../../../public//assets/fakerecaptcha/captcha_spinner.gif" alt="" :style="hasBeenClicked &amp;&amp; {opacity: '1', visibility: 'visible'}"/>
           </div>
         </div>
       </div>
-      <div class="bg-layer position-absolute w-100 h-100" id="popup-captcha-2-bglayer"></div>
-      <div class="popup-frame d-flex flex-column-reverse position-absolute" id="popup-captcha-2" style="
+      <div class="bg-layer position-absolute w-100 h-100" id="popup_captcha_2-bglayer" x-init="Alpine.store('popup_captcha_2-hasBeenResolved', false)" x-show.important="!$store['popup_captcha_2-hasBeenResolved']"></div>
+      <div class="popup-frame d-flex flex-column-reverse position-absolute" x-data="" x-show.important="!$store['popup_captcha_2-hasBeenResolved']" id="popup_captcha_2" style="
 		height:auto;
 		width:60%;
 		
 	" should-activate="should-activate" should-reposition="should-reposition">
         <div class="popup-body d-flex flex-column flex-grow-1 bg-secondary border-primary" style="border:3.5px solid;overflow-y:clip">
-          <div class="close-btn align-self-end close-container-1"><img class="close-img" src="/assets/x.svg" style="height: 1rem;width: 1rem;"/></div><span class="popup-text px-4 mb-2 overflow-auto flex-grow-1">
+          <div class="close-btn align-self-end close-container-1" x-data="" x-on:click="$store['popup_captcha_2-hasBeenResolved']=true"><img class="close-img" src="../../../../public//assets/x.svg" style="height: 1rem;width: 1rem;"/></div><span class="popup-text px-4 mb-2 overflow-auto flex-grow-1">
             <h5 class="mt-2">Prove you're human</h5>
-            <div class="captcha-container w-100"><img class="w-100" id="popup-captcha-2-img"/></div>
+            <div class="captcha-container w-100"><img class="w-100" id="popup_captcha_2-img"/></div>
             <h5 class="mt-2">Type the text</h5>
             <form class="mt-0">
               <div class="form-group mt-0">
-                <input class="form-control" type="text" id="popup-captcha-2-input" placeholder=""/>
+                <input class="form-control" type="text" id="popup_captcha_2_input" placeholder="" required="required" x-model="popup_captcha_2_input.value" x-on:input="
+		popup_captcha_2_input.condition_met = $event.target.checkValidity();
+		console.log(popup_captcha_2_input.condition_met);
+	"/>
               </div>
             </form></span>
         </div>
@@ -328,84 +344,6 @@
           <h1 class="popup-title m-0 mt-2">Are you a robot?</h1>
         </div>
       </div>
-      <div class="bg-layer position-absolute w-100 h-100" id="popup-signup-bglayer"></div>
-      <div class="popup-frame d-flex flex-column-reverse position-absolute" id="popup-signup" style="
-		height:auto;
-		width:80%;
-		
-	" should-activate="should-activate" should-reposition="should-reposition">
-        <div class="popup-body d-flex flex-column flex-grow-1 bg-secondary border-primary" style="border:3.5px solid;overflow-y:clip">
-          <div class="close-btn align-self-end close-container-3"><img class="close-img" src="/assets/x.svg" style="height: 1rem;width: 1rem;"/></div><span class="popup-text px-5 mb-2 overflow-auto flex-grow-1">
-            <form>
-              <div class="form-group mt-2">
-                <label class="undefined" for="popup-signup-username">User name</label>
-                <input class="form-control" type="text" id="popup-signup-username" placeholder=""/>
-              </div>
-              <div class="form-group mt-2">
-                <label class="undefined" for="popup-signup-email">E-mail</label>
-                <input class="form-control" type="email" id="popup-signup-email" placeholder=""/>
-              </div>
-              <div class="form-group mt-2">
-                <label class="undefined" for="popup-signup-password">Password</label>
-                <input class="form-control" type="password" id="popup-signup-password" placeholder=""/>
-              </div>
-            </form></span>
-          <div class="px-5 pt-4">
-            <div class="btnsContainer btn-toolbar justify-content-between">
-              <div class="btn-no d-flex" style="width: 40%; max-width:200px">
-                <button class="btn-secondary flex-grow-1 text-nowrap pb-0 pt-1">
-                  <h4 class="btn-text text-center my-0">Cancel</h4>
-                </button>
-              </div>
-              <div class="gutter flex-shrink-1" style="width:10%;"></div>
-              <div class="btn-yes d-flex" style="width: 40%; max-width:200px">
-                <button class="btn-primary flex-grow-1 text-nowrap pb-0 pt-1">
-                  <h4 class="btn-text text-center my-0">Okay</h4>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="popup-foooter-spacer pb-4"></div>
-        </div>
-        <div class="popup-title m-0">
-          <h1 class="popup-title m-0 mt-2">Sign up</h1>
-        </div>
-      </div>
-      <div class="bg-layer position-absolute w-100 h-100" id="fkrc-checkbox-wrapper-4-bglayer"></div>
-      <div class="fkrc fkrc-checkbox-wrapper position-absolute" id="fkrc-checkbox-wrapper-4" should-reposition="should-reposition" should-activate="should-activate">
-        <div class="fkrc-container fkrc-m-p">
-          <div class="fkrc-checkbox-window fkrc-m-p fkrc-block">
-            <div class="fkrc-checkbox-container fkrc-m-p">
-              <button class="fkrc-checkbox fkrc-m-p fkrc-line-normal" type="button"></button>
-            </div>
-            <p class="fkrc-im-not-a-robot fkrc-m-p fkrc-line-normal">I&apos;m not a robot</p><img class="fkrc-captcha-logo fkrc-line-normal" src="/assets/fakerecaptcha/captcha_logo.svg" alt=""/>
-            <p class="fkrc-checkbox-desc fkrc-m-p fkrc-line-normal">CAPTCHA</p>
-            <p class="fkrc-checkbox-desc fkrc-m-p fkrc-line-normal">Privacy - Terms</p><img class="fkrc-spinner fkrc-m-p fkrc-line-normal" src="/assets/fakerecaptcha/captcha_spinner.gif" alt=""/>
-          </div>
-        </div>
-      </div>
-      <div class="bg-layer position-absolute w-100 h-100" id="popup-thank-you-bglayer"></div>
-      <div class="popup-frame d-flex flex-column-reverse position-absolute" id="popup-thank-you" style="
-		height:auto;
-		width:70%;
-		max-width:30rem; min-heigth: 90%;
-	">
-        <div class="popup-body d-flex flex-column flex-grow-1 bg-secondary border-primary" style="border:3.5px solid;overflow-y:clip">
-          <div class="close-btn align-self-end close-container-3"><img class="close-img" src="/assets/x.svg" style="height: 1rem;width: 1rem;"/></div>
-          <h2 class="text-center migra pt-3 px-3">Thank you to <b class="migra-bold-italics">everyone </b>involved in the project, especially:</h2>
-          <h4 class="thankyou-ppl text-center migra py-3">Filip Bojanić <br/>Urška Breznik <br/>Marko Brumen<br/>Vojo Erjaković<br/>Snow Yunxue Fu<br/>Adrian Kolarczyk<br/>Bogna Konior<br/>Daniel Koniusz<br/>Kaja Kraner<br/>Marko Makuc<br/>Katra Mitrović<br/>Taso Pataridze<br/>Kuba Mati Pies<br/>Tjaša Pogačar<br/>Lucija Smodiš<br/>Maria Stożek<br/>Tajana Stres<br/>Vida Vončina<br/>Anton Žežov<br/>Simon Žlahtič</h4>
-          <div class="btn-yes d-flex align-self-center">
-            <button class="btn-primary flex-grow-1 text-nowrap pt-1 pb-0 px-2">
-              <h4 class="btn-text text-center my-0">Thank you</h4>
-            </button>
-          </div>
-          <div class="py-3"></div>
-        </div>
-        <div class="popup-title m-0">
-          <h1 class="popup-title m-0 mt-2">Thank you</h1>
-        </div>
-      </div>
-      <p class="testtest">this is appended</p>
     </div>
   </body>
 </html>
