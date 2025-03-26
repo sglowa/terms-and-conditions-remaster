@@ -7,14 +7,32 @@ block vars
 block title
 	h1.popup-title.m-0.mt-2 Are you a robot?
 block content
-	span.popup-text.px-4.mb-2.overflow-auto.flex-grow-1
+	script.
+		function genCaptcha(){
+				const {token, captchaImgBase64} = generateCaptcha_gif();
+				const captchaImgSource = `data:image/gif;base64, ${captchaImgBase64}`;
+				return {
+					token,
+					captchaImgSource,
+					updateCaptcha(){
+						const {token, captchaImgBase64} =  generateCaptcha_gif();
+						this.token = token;
+						this.captchaImgSource = `data:image/gif;base64, ${captchaImgBase64}`
+					}}
+		}
+	span.popup-text.px-4.mb-2.overflow-auto.flex-grow-1(x-data='genCaptcha()')
 		h5.mt-2 Prove you're human
-		.captcha-container.w-100
-			img.w-100(id=`${id}-img`)
+		.captcha-container.w-100(style='background: linear-gradient(252deg, red, #3a00ff); transform: scale(1)')
+			img.w-100(id=`${id}-img` style='mix-blend-mode: lighten'
+				x-bind:src="captchaImgSource"
+				x-on:click="updateCaptcha()")
 		h5.mt-2 Type the text
-		form.mt-0
+		form.mt-0(x-on:submit=`
+			$event.preventDefault();
+			Alpine.store('${id}-hasBeenResolved', true)
+		`)
 			.form-group.mt-0
-				-var inputData = {label:'',placeholder:'',type:'text',id:`${id}_input`}
+				-var inputData = {label:'',placeholder:'',type:'text',id:`${id}_input`,patternVarName:'token'}
 				include textInput.pug
 	//- - var btnLeft = "Cancel";
 	//- - var btnRight = "Okay";

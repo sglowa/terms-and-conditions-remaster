@@ -2,6 +2,7 @@ if inputData.label
 	label(for=`${inputData.id}` class=`${inputData.label_hidden}`)= inputData.label
 input.form-control(
 	type=`${inputData.type}`
+	value=""
 	id=`${inputData.id}`
 	placeholder=`${inputData.placeholder}`	
 	required
@@ -10,6 +11,7 @@ input.form-control(
 		${inputData.id}.condition_met = $event.target.checkValidity();
 		console.log(${inputData.id}.condition_met);
 	`
+	x-bind:pattern = inputData.patternVarName
 	)
 //- x-init=` if (typeof ${inputData.id.replace(/[\s-]/g,'_')} == 'undefined') ${inputData.id.replace(/[\s-]/g,'_')} = '' `
 

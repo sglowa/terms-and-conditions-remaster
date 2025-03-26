@@ -10,8 +10,9 @@ const webpack = require('webpack');
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
 
-
+/** @type {import('webpack').Configuration} */
 module.exports = {
+    target: 'web',
     entry: "./src/js/index.js",
     output: {
         filename: 'bundle.js',
@@ -25,14 +26,18 @@ module.exports = {
             assert: require.resolve('assert'),
             path: require.resolve('path-browserify'),
             stream: require.resolve('stream-browserify'),
-            crypto: require.resolve('crypto-browserify'),
+            crypto: require.resolve('crypto-browserify'),            
+            buffer: require.resolve("buffer/"),
+            vm: require.resolve("vm-browserify"),
         },
         alias:{
-            'node:crypto':'crypto-browserify',
+            // 'node:crypto':'crypto-browserify',
+            // 'crypto':'crypto-browserify',
+            'buffer':'buffer',
         },
     },
     externals: {
-        'node:crypto': 'commonjs crypto' // this solved problems with node: protocol
+        // 'node:crypto': 'crypto' // this solved problems with node: protocol
     },
     devServer: {
         static: {
@@ -41,6 +46,7 @@ module.exports = {
         hot: true,
         open: true,
         port:3001,
+        allowedHosts: "all",
         client: {
             overlay:false,
         }
@@ -62,12 +68,15 @@ module.exports = {
     mode: 'development', // this is unminified. for mini set to 'production'    
     devtool: 'source-map',
     plugins: [
-        // new webpack.ProvidePlugin({
-        //     Buffer: ['buffer', 'Buffer'], // Ensure Buffer is available in the browser
-        // }),
         new webpack.HotModuleReplacementPlugin(), // Enable HMR globally
         // new Dotenv({
         //     path: "./.env"
         // })
-    ]    
+        new webpack.ProvidePlugin({
+            process: 'process/browser',
+            Buffer: ['buffer', 'Buffer'], // Ensure Buffer is available in the browser
+          }),
+    ],
+
+        
 }
