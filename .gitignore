@@ -1,6 +1,15 @@
 log.md
 node_modules/
+pug_reference/
 .pnp
 .pnpm
 .env
 .DS_STORE
+client-user/src/js/captchaTest.js
+alpine-test.html
+.vscode
+client-user/src/**/*dist*/
+*.dev.js
+workbench.html
+bundle.*
+Compiled-HTML/

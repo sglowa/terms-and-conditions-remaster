@@ -10,7 +10,7 @@
       "@shared/*":["../shared/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["./**/*"],
   "exclude": [
     "dist",
     "node_modules",
