@@ -1,3 +1,4 @@
+//- • TODO: Now i need to rewrite handling the button events.
 extends popupFrame.pug
 block vars
 	-var height = "auto"
@@ -7,16 +8,48 @@ block vars
 block title
 	h1.popup-title.m-0.mt-2 Newsletter
 block content
-	span.popup-text.px-4.mb-2.overflow-auto.flex-grow-1
-		h2.form-call2action.mt-2
-			| Send us your e-mail, we’ll make sure you never miss a thing!
-		form.mt-2
-			.form-group.mt-4
-				-var inputData = {label:'newsletter3',placeholder:'type your E-MAIL address here',type:'email',id:`${id}_email`,label_hidden:'d-none'}
-				include textInput.pug
-	- var btnLeft = "Disagree";
-	- var btnRight = "Agree";
-	- var btnInnerMrgn = "my-0";
-	.px-5.pt-4
-		include twoBtns-aligned.pug
-	.popup-foooter-spacer.pb-4
+	div(
+		style="display:grid"
+		x-data=`{
+			areAllConditionsSatisfied:false,
+			${id}_email:{
+				condition_met:false,
+			}}`
+		x-init= `$watch('${id}_email.condition_met',val=>areAllConditionsSatisfied=val)`
+		@ok=`Alpine.store('${id}-hasBeenResolved', true)`
+		@cancel=`
+			Alpine.store('${id}-hasBeenResolved', true)
+			console.log('newsletter cancneled')
+		`
+	)
+		//- ~~TEXT INPUT~~
+		span.popup-text.px-4.mb-2.overflow-auto.flex-grow-1 
+			h2.form-call2action.mt-2
+				| Give us your e-mail address, we’ll make sure you never miss a thing!
+			form.mt-2
+				.form-group.mt-4
+					//- • TODO: textInput should also be refactored into a mixin... (low priority)
+					-
+						var inputData = { label:'newsletter3',
+						placeholder: 'type your E-MAIL address here!',
+						type:'email',
+						id:`${id}_email`,
+						label_hidden:'d-none',
+						pattern: `[\\w\\-\\.]+@([\\w\\-]+\\.)+[\\w\\-]{2,4}` /* have to escape twice, cause of how pug cleans up `\` */
+						}
+					include textInput.pug
+		//- ~~BUTTONS~~
+		.px-5.pt-4
+			+twoBtnsAligned({
+				leftButton:{
+					clickEvent:"'cancel'",
+					isDisabled:"false",
+					text:'Cancel'
+				},
+				rightButton:{
+					clickEvent:"'ok'",
+					isDisabled:"()=>(!areAllConditionsSatisfied)",
+					text:'Submit'
+				}
+			})
+		.popup-foooter-spacer.pb-4

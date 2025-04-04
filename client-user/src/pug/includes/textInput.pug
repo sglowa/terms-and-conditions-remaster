@@ -1,3 +1,7 @@
+//- 
+	- TODO: (low priority): Rewrite using the alpine component pattern (see e.g. button pug file).
+	- The pattern is for literal regex vals ; x-bind:pattern is for dynamically generated ones (captcha token)
+		- i can combine by wrapping the literal vals in function
 if inputData.label
 	label(for=`${inputData.id}` class=`${inputData.label_hidden}`)= inputData.label
 input.form-control(
@@ -11,7 +15,8 @@ input.form-control(
 		${inputData.id}.condition_met = $event.target.checkValidity();
 		console.log(${inputData.id}.condition_met);
 	`
-	x-bind:pattern = inputData.patternVarName
+	pattern= inputData.pattern 
+	x-bind:pattern = inputData.patternVarName 
 	)
 //- x-init=` if (typeof ${inputData.id.replace(/[\s-]/g,'_')} == 'undefined') ${inputData.id.replace(/[\s-]/g,'_')} = '' `
 
