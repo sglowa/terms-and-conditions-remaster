@@ -5,9 +5,13 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "render_pug_views":"echo 'client-screen render_pug_views placeholder' "
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "pug-cli": "1.0.0-alpha6"
+  }
 }

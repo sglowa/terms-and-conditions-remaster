@@ -13,3 +13,4 @@ client-user/src/**/*dist*/
 workbench.html
 bundle.*
 Compiled-HTML/
+LivePugCompiler_dist/
