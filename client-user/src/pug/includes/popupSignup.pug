@@ -7,12 +7,13 @@ block vars
 block title
 	h1.popup-title.m-0.mt-2 Sign up
 block content
-	div(x-data=`{
+	//- this can be rewritten clearer with promises.
+	div(x-data=`{			
 			${id}_username:{value:'',condition_met:false},
 			${id}_email:{value:'',condition_met:false},
 			${id}_password:{value:'',condition_met:false},
-			_isConditionSatisfied:false,
-			get isConditionSatisfied() {
+			_areAllConditionsSatisfied:false,
+			get areAllConditionsSatisfied() {
 				
 				let conditions = [
                     this.${id}_username.condition_met+0,
@@ -25,7 +26,7 @@ block content
 				return result;
 			}
 		}`
-		x-init="$watch('_isConditionSatisfied', (value,oldVal) => console.log(`current: ${value}, old: ${oldVal}`))"
+		x-init="$watch('_areAllConditionsSatisfied', (value,oldVal) => console.log(`current: ${value}, old: ${oldVal}`))"
 		style="display: grid")
 		span.popup-text.px-5.mb-2.overflow-auto.flex-grow-1
 			form
@@ -33,7 +34,12 @@ block content
 					-var inputData = {label:'User name',placeholder:'',type:'text',id:`${id}_username`}
 					include textInput.pug
 				.form-group.mt-2
-					-var inputData = {label:'E-mail',placeholder:'',type:'email',id:`${id}_email`}
+					-
+						var inputData = {label:'E-mail',
+						placeholder:'',
+						type:'email',
+						id:`${id}_email`,
+						pattern: `[\\w\\-\\.]+@([\\w\\-]+\\.)+[\\w\\-]{2,4}` /* have to escape twice, cause of how pug cleans up `\` */	}
 					include textInput.pug
 				.form-group.mt-2
 					-var inputData = {label:'Password',placeholder:'',type:'password',id:`${id}_password`}
@@ -42,5 +48,6 @@ block content
 		- var btnRight = "Okay";
 		- var btnInnerMrgn = "my-0";
 		.px-5.pt-4
+			//- :TODO: use the mixin twoBtns-aligned-alt.pug (includes btnAlt.pug alpine component)
 			include twoBtns-aligned.pug
 		.popup-foooter-spacer.pb-4

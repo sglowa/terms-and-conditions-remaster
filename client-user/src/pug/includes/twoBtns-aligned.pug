@@ -1,3 +1,8 @@
+//- VARS:
+//- var id
+//- var btnLeft
+//- var btnRight
+//- var btnInnerMrgn
 .btnsContainer.btn-toolbar.justify-content-between
 	.btn-no.d-flex(style="width: 40%; max-width:200px")
 		button.btn-secondary.flex-grow-1.text-nowrap.pb-0.pt-1(
@@ -8,8 +13,8 @@
 	.btn-yes.d-flex(style="width: 40%; max-width:200px")
 		button.btn-primary.flex-grow-1.text-nowrap.pb-0.pt-1(			
 			disabled="true"			
-			x-bind:disabled= `typeof isConditionSatisfied !== 'undefined' 
-				? !isConditionSatisfied 
+			x-bind:disabled= `typeof areAllConditionsSatisfied !== 'undefined' 
+				? !areAllConditionsSatisfied 
 				: true`
 			x-on:click!=`$store['${id}-hasBeenResolved']=true`
 		)

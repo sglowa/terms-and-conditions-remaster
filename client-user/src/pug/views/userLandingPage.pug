@@ -27,6 +27,14 @@ block scripts
     script(src=`${bundlePath}`)
 
 append body
+    //- 
+        COMPONENTS    
+    include ../includes/btnAlt.pug
+    //- 
+        MIX-INS
+    include ../mixins/twoBtns-aligned-alt.pug
+    //-
+        BODY
     - var assetsPathPrefix = "../../../../public/"
     include ../includes/bg/filmLayer.pug
     include ../includes/bg/ticketLayer.pug

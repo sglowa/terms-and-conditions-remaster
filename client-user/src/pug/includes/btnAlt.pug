@@ -1,0 +1,47 @@
+template(id='buttonPrototype')
+  button(x-html="displayHTML" :class="classArray" @click="$dispatch(clickEvent)" :disabled="isDisabled()")
+<script type="text/javascript">
+//@ts-check
+
+    /** 
+     * @typedef {Object} ButtonAlpineComponent
+     * @property {string} clickEvent - what the button is supposed to do. used as event payload
+     * @property {()=>boolean|boolean} isDisabled - which var should disabled attr depend on
+     * @property {string} displayHTML - text to display in Button
+     * @property {string[]} [classArray] - text to display in Button
+     * @property {HTMLElement} [$el] - component element
+     * @property {()=>void} [$nextTick]
+     * @property {()=>void} init
+    */
+
+    document.addEventListener('alpine:init', () => {
+        let elem;
+        //@ts-ignore        
+        Alpine.data("button", ({clickEvent, isDisabled}) => {
+            /** @type {ButtonAlpineComponent} */
+            var obj = {
+                clickEvent,
+                isDisabled: typeof isDisabled == "function" ? 
+                    isDisabled :
+                    ()=>(isDisabled),
+                displayHTML: "",
+                classArray:undefined,
+                init() {
+                    if(this.$el == null||this.$nextTick == null){
+                        console.error(`$el is null`)
+                    }else{
+                        this.classArray = [...this.$el.classList];                        
+                        this.$el.className='';                        
+                        this.displayHTML = this.$el.innerHTML;                
+                        this.$el.innerHTML = document.getElementById('buttonPrototype')?.innerHTML ?? (console.error("failed to get element")+"")
+                        //@ts-ignore
+                        this.$nextTick(()=>{this.$el.replaceWith(...this.$el.childNodes)})
+                    }                    
+                }
+            }
+            return obj;
+        })        
+    })
+</script>
+
+

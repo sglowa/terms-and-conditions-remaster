@@ -1,0 +1,15 @@
+mixin twoBtnsAligned({leftButton,rightButton,btnInnerMrgn='my-0'})
+	.btnsContainer.btn-toolbar.justify-content-between
+		.btn-no.d-flex(style="width: 40%; max-width:200px")
+			div.btn-secondary.flex-grow-1.text-nowrap.pb-0.pt-1(x-data=`button({
+				clickEvent:${leftButton.clickEvent},
+				isDisabled:${leftButton.isDisabled}
+			})`)
+				h4.btn-text.text-center(class=`${btnInnerMrgn}`)= leftButton.text
+		.gutter.flex-shrink-1(style="width:10%;")
+		.btn-yes.d-flex(style="width: 40%; max-width:200px")
+			div.btn-primary.flex-grow-1.text-nowrap.pb-0.pt-1(x-data=`button({
+				clickEvent:${rightButton.clickEvent},
+				isDisabled:${rightButton.isDisabled}
+			})`)
+				h4.btn-text.text-center(class=`${btnInnerMrgn}`)= rightButton.text
