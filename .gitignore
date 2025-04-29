@@ -5,10 +5,10 @@ pug_reference/
 .pnpm
 .env
 .DS_STORE
-client-user/src/js/captchaTest.js
 alpine-test.html
 .vscode
 client-user/src/**/*dist*/
+client-screen/src/**/*dist*/
 *.dev.js
 workbench.html
 bundle.*
