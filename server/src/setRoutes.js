@@ -27,8 +27,8 @@ export default function setRoutes(app){
 
     app.use('/public', express.static(path.join(__dirname,"../../client-user/public")))
     
-    app.use('/js', express.static(path.join(__dirname,"../../client-user/dist")))
-
+    app.use('/user', express.static(path.join(__dirname,"../../client-user/dist")));
+    app.use('/screen', express.static(path.join(__dirname,"../../client-screen/dist")));
 
     app.get('/',(req,res)=>{
         res.render('userLandingPage', {
@@ -38,7 +38,7 @@ export default function setRoutes(app){
         });
     });
     app.get('/screen',(req,res)=>{
-        res.render('screen', {pathToPublic:"./", pathToBundle:undefined});
+        res.render('screen', {pathToPublic:"./", pathToBundle:"js/bundle.js"});
     });
 
 

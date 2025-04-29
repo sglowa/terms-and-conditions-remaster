@@ -6,7 +6,7 @@ block styles
     rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
     crossorigin="anonymous")
-    - var pathToPublic = pathToPublic || "../../../../public"
+    //- - var pathToPublic = pathToPublic || "../../../../public"
     link(href=`${pathToPublic}/styles/main.css` rel="stylesheet")
     link(href=`${pathToPublic}/styles/fakerecaptcha.css` rel="stylesheet")
 
@@ -54,5 +54,5 @@ append body
     //- - idNum++
     //- include ../includes/popupRecaptcha-checkbox.pug
     //- include ../includes/thankyou.pug
-    - var pathToBundle = pathToBundle || "http://localhost:3001/bundle.js"
-    script(src=`${pathToBundle}`)
+    //- - var pathToBundle = pathToBundle || "http://localhost:3001/bundle.js"
+    script(src=`${(pathToBundle || "http://localhost:3001/bundle.js")}`)

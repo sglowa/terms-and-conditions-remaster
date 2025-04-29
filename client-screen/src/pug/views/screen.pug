@@ -4,16 +4,16 @@ html(lang='en')
         meta(charset='utf-8')
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         title Screen
-        link(rel="stylesheet", href="style/screen-style.css")
+        link(rel="stylesheet", href="/style/screen-style.css")
         script(src="/socket.io/socket.io.js")
     body
-        video#videoToMask(src="./assets/vidHorizon.mp4")
-        img#brushImg(src="./assets/brush1.png")
+        video#videoToMask(src="/assets/vidHorizon.mp4")
+        img#brushImg(src="/assets/brush1.png")
         #canvasContainer
             canvas#drawingCnv
             canvas#videoCnv
         video.bkp(playsinline autoplay x-show="false" style="display:none")
         div
             p#log()
-        - var pathToBundle = pathToBundle || "http://localhost:3002/bundle.js"
-        script(type="text/javascript" src=`${pathToBundle}`)
+        //- - var pathToBundle = pathToBundle || "http://localhost:3002/bundle.js"
+        script(type="text/javascript" src=src=`${(pathToBundle || "http://localhost:3002/bundle.js")}`)
