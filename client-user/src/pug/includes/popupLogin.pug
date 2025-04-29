@@ -10,7 +10,13 @@ block content
 	span.popup-text.px-5.mb-2.overflow-auto.flex-grow-1
 		form
 			.form-group.mt-2
-				-var inputData = {label:'E-mail',placeholder:'',type:'email',id:`${id}_email`}
+				-
+					var inputData = {
+						label:'E-mail',
+						placeholder:'',
+						type:'email',
+						id:`${id}_email`,
+						pattern: `[\\w\\-\\.]+@([\\w\\-]+\\.)+[\\w\\-]{2,4}` /* have to escape twice, cause of how pug cleans up `\` */}
 				include textInput.pug
 			.form-group.mt-2
 				-var inputData = {label:'Password',placeholder:'',type:'password',id:`${id}_password`}

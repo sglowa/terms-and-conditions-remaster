@@ -16,7 +16,7 @@ module.exports = {
     entry: "./src/js/index.js",
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, "dist", "scripts"),
+        path: path.resolve(__dirname, "dist", "js"),
         publicPath:'/',
         sourceMapFilename: '[file].map',
     },
@@ -41,7 +41,7 @@ module.exports = {
     },
     devServer: {
         static: {
-            directory:path.resolve(__dirname, "dist", "scripts"),        
+            directory:path.resolve(__dirname, "dist", "js"),        
         },
         hot: true,
         open: true,
@@ -76,7 +76,5 @@ module.exports = {
             process: 'process/browser',
             Buffer: ['buffer', 'Buffer'], // Ensure Buffer is available in the browser
           }),
-    ],
-
-        
+    ],        
 }

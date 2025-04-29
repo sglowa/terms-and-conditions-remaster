@@ -20,6 +20,7 @@
     "captcha.gif": "^1.0.11",
     "crypto-browserify": "^3.12.1",
     "path-browserify": "^1.0.1",
+    "pointer-tracker": "^2.5.3",
     "process": "^0.11.10",
     "pug-cli": "1.0.0-alpha6",
     "stream-browserify": "^3.0.0",
@@ -29,10 +30,14 @@
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
+    "@types/alpinejs": "^3.13.11",
+    "@types/socket.io": "^3.0.2",
+    "@types/socket.io-client": "^3.0.0",
     "babel-loader": "^9.2.1",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.0",
-    "@types/alpinejs": "^3.13.11"
+    "webpack-dev-server": "^5.2.0"
   }
 }

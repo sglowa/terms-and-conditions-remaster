@@ -17,10 +17,7 @@ block content
 			}}`
 		x-init= `$watch('${id}_email.condition_met',val=>areAllConditionsSatisfied=val)`
 		@ok=`Alpine.store('${id}-hasBeenResolved', true)`
-		@cancel=`
-			Alpine.store('${id}-hasBeenResolved', true)
-			console.log('newsletter cancneled')
-		`
+		@cancel=`Alpine.store('${id}-hasBeenResolved', true)`
 	)
 		//- ~~TEXT INPUT~~
 		span.popup-text.px-4.mb-2.overflow-auto.flex-grow-1 

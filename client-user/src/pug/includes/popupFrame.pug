@@ -1,3 +1,12 @@
+//-VARS:
+//-var height
+//-var width
+//-var closeContainer
+//-var id
+//-var extraFrameStyle
+//-var shouldReposition
+//-var shouldActivate
+//-var assetsPathPrefix
 block vars
 .bg-layer.position-absolute.w-100.h-100(
 	id=`${id}-bglayer`
@@ -12,7 +21,7 @@ block vars
 		${extraFrameStyle ? extraFrameStyle : ''}
 	`
 	should-activate = shouldActivate == undefined ? true : shouldActivate
-	should-reposition = shouldReposition == undefined ? true : shouldReposition	
+	should-reposition = shouldReposition == undefined ? true : shouldReposition
 )
 	.popup-body.d-flex.flex-column.flex-grow-1.bg-secondary.border-primary(style="border:3.5px solid;overflow-y:clip")
 		.close-btn.align-self-end(

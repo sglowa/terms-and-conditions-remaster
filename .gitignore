@@ -14,3 +14,4 @@ workbench.html
 bundle.*
 Compiled-HTML/
 LivePugCompiler_dist/
+dist/

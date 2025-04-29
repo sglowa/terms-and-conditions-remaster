@@ -1,31 +1,34 @@
 import {Server} from "socket.io"
 import {Server as httpServer} from 'http'
 
+/** @typedef {import('@shared/types').Coords} Coords */
+
 /**
  * sets up io server and event handling
  * @param {httpServer} server
  * @returns {Server}
  */
-export default function setIo(server){
+export default function setupSocket(server){
     const io = new Server(server)
+    const screenNamespace = io.of('/screen');
+    const userNamespace = io.of('/user')
 
     // DONE ?
-    io.of('/screen').on('connection',(socket)=>{
+    screenNamespace.on('connection',(socket)=>{
         console.debug('screen connected');
         socket.join('screens');
     });
-    
-    
+
     // DONE ?
     // NOTE: OPTIONAL - add other user trackers (besides pointer coords)
-    io.of('/user').on('connection',(socket)=>{
-        console.log('socket connected');
+    userNamespace.on('connection',(socket)=>{
+        console.log('user connected');
         socket.join('users');
-        socket.on('ptrCoords',data=>{
-            io.to('screens').emit('newCoords',data);
+        socket.on('coords', /** @param {Coords} data */ (data)=>{
 	        console.debug(data.x,data.y);
+            screenNamespace.emit('coords',data);
         });
     });
     
-    return io
+    return io;
 }

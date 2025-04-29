@@ -7,29 +7,28 @@ block vars
 block title
 	h1.popup-title.m-0.mt-2 Sign up
 block content
-	//- this can be rewritten clearer with promises.
 	div(x-data=`{			
 			${id}_username:{value:'',condition_met:false},
 			${id}_email:{value:'',condition_met:false},
 			${id}_password:{value:'',condition_met:false},
-			_areAllConditionsSatisfied:false,
 			get areAllConditionsSatisfied() {
 				
 				let conditions = [
-                    this.${id}_username.condition_met+0,
-                    this.${id}_email.condition_met+0,
-                    this.${id}_password.condition_met+0
+                    this.${id}_username.condition_met,
+                    this.${id}_email.condition_met,
+                    this.${id}_password.condition_met
                 ]
 
-				let result =  conditions.length ? conditions.every(val => val === 1) : true;
-				console.log("result: ", result);
+				let result =  conditions.length ? conditions.every(val => val === true) : true;
+				console.debug("are all conditions satisfied: ", result);
 				return result;
 			}
 		}`
-		x-init="$watch('_areAllConditionsSatisfied', (value,oldVal) => console.log(`current: ${value}, old: ${oldVal}`))"
+		@ok=`Alpine.store('${id}-hasBeenResolved', true)`
+		@cancel=`Alpine.store('${id}-hasBeenResolved', true)`
 		style="display: grid")
 		span.popup-text.px-5.mb-2.overflow-auto.flex-grow-1
-			form
+			form(x-data='{a:1}' @submit.prevent='console.log("signup submitted")')
 				.form-group.mt-2
 					-var inputData = {label:'User name',placeholder:'',type:'text',id:`${id}_username`}
 					include textInput.pug
@@ -39,15 +38,42 @@ block content
 						placeholder:'',
 						type:'email',
 						id:`${id}_email`,
+						customTypeMismatchMessage:'"Enter valid email address"',
 						pattern: `[\\w\\-\\.]+@([\\w\\-]+\\.)+[\\w\\-]{2,4}` /* have to escape twice, cause of how pug cleans up `\` */	}
 					include textInput.pug
 				.form-group.mt-2
-					-var inputData = {label:'Password',placeholder:'',type:'password',id:`${id}_password`}
+					-
+						var inputData = {
+							label:'Password',
+							placeholder:'',
+							type:'password',
+							id:`${id}_password`,
+							pattern: `(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}`,
+							customTypeMismatchMessage: `(value="")=>{
+								let message = "Password must contain"
+								if(value.length<6) return (console.log(message+=" at least 6 characters, including at least 1 letter and 1 number.") ?? message);
+								if(value.match(/\\d/) == null) message+=" at least 1 number";
+								if(value.match(/[a-zA-Z]/) == null) message == "Password must contain" ? message+=" at least 1 letter" : message+=" and at least 1 letter"
+								console.log(message)
+								return (message == "Password must contain" ? "Password contains invalid characters." : message+".")
+							}`}
 					include textInput.pug
 		- var btnLeft = "Cancel";
 		- var btnRight = "Okay";
-		- var btnInnerMrgn = "my-0";
 		.px-5.pt-4
-			//- :TODO: use the mixin twoBtns-aligned-alt.pug (includes btnAlt.pug alpine component)
-			include twoBtns-aligned.pug
+			//- :TODO:DONE use the mixin twoBtns-aligned-alt.pug (includes btnAlt.pug alpine component)
+			//- :TODO: Add listener to hover event on which Ed will try to request submit on the parent form in order to display the error message mismatch message
+			//- include twoBtns-aligned.pug //- old
+			+twoBtnsAligned({ 
+				leftButton:{
+					clickEvent:"'cancel'",
+					isDisabled:"false",
+					text:"Cancel"
+				},
+				rightButton:{
+					clickEvent:"'ok'",
+					isDisabled:"()=>(!areAllConditionsSatisfied)",
+					text:"Okay"
+				}
+			})
 		.popup-foooter-spacer.pb-4

@@ -6,12 +6,29 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "render_pug_views":"echo 'client-screen render_pug_views placeholder' "
+    "render_pug_views": "echo 'client-screen render_pug_views placeholder' ",
+    "build_js": "webpack",
+    "build_js_hot": "webpack serve"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "pug-cli": "1.0.0-alpha6"
+  },
+  "devDependencies": {
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "@types/socket.io": "^3.0.2",
+    "@types/socket.io-client": "^3.0.0",
+    "pug-lint": "^2.7.0",
+    "pug-lint-config-clock": "^2.0.0",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0",
+    "babel-loader": "^9.2.1",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@types/alpinejs": "^3.13.11"
   }
 }

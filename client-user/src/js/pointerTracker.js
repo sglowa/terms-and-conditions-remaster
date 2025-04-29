@@ -63,7 +63,7 @@ function normalizeCoords(coords) {
 function isDeltaMoveEnough(current, previous) {
   const deltaX = Math.abs(current.x - previous.x);
   const deltaY = Math.abs(current.y - previous.y);
-  const threshold = 0.005;
+  const threshold = 0.01;
 
   if (deltaX < threshold && deltaY < threshold) {
     console.debug('Pointer coord delta below threshold', { deltaX, deltaY, threshold });

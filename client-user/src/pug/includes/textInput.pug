@@ -1,3 +1,11 @@
+//- VARS
+	id
+	type
+	pattern | patternVarName
+	[placeholder]
+	[label]
+	[label_hidden]
+	[customTypeMismatchMessage]
 //- 
 	- TODO: (low priority): Rewrite using the alpine component pattern (see e.g. button pug file).
 	- The pattern is for literal regex vals ; x-bind:pattern is for dynamically generated ones (captcha token)
@@ -11,12 +19,25 @@ input.form-control(
 	placeholder=`${inputData.placeholder}`	
 	required
 	x-model=`${inputData.id}.value`
-	x-on:input=`
-		${inputData.id}.condition_met = $event.target.checkValidity();
-		console.log(${inputData.id}.condition_met);
+	x-data=`{customTypeMismatchMessage : ${inputData.customTypeMismatchMessage}}`
+	x-on:input=`		
+		if (customTypeMismatchMessage && $event.target.validity.patternMismatch) {			
+			$event.target.setCustomValidity(
+				typeof customTypeMismatchMessage == 'function' ?
+					customTypeMismatchMessage($event.target.value) :
+					customTypeMismatchMessage+""
+			);
+			${inputData.id}.condition_met = false;
+		} else {
+			debugger
+			$event.target.setCustomValidity("");
+			${inputData.id}.condition_met = $event.target.checkValidity();
+		}		
+		console.log("${inputData.id}:", ${inputData.id}.condition_met);
 	`
 	pattern= inputData.pattern 
 	x-bind:pattern = inputData.patternVarName 
 	)
 //- x-init=` if (typeof ${inputData.id.replace(/[\s-]/g,'_')} == 'undefined') ${inputData.id.replace(/[\s-]/g,'_')} = '' `
+
 
