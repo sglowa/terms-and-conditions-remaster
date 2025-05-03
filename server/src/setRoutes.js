@@ -31,7 +31,11 @@ export default function setRoutes(app){
 
 
     app.get('/',(req,res)=>{
-        res.render('userLandingPage', {pathToPublic:"./", pathToBundle:undefined});
+        res.render('userLandingPage', {
+            pathToPublic:"./",
+            // pathToBundle:"user/js/bundle.js",
+            pathToBundle:"",
+        });
     });
     app.get('/screen',(req,res)=>{
         res.render('screen', {pathToPublic:"./", pathToBundle:undefined});

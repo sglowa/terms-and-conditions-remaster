@@ -31,12 +31,6 @@ module.exports = {
         client: {
             overlay:false,
         },
-        host: '0.0.0.0',
-        public: '165.232.85.81:3001',
-        headers:{
-            'Access-Control-Allow-Origin': '*', // Allow cross-origin requests
-            'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, Authorization',      
-        }
     },
     module: {
         rules: [
